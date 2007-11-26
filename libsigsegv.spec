@@ -1,6 +1,6 @@
 %define name libsigsegv
 %define version 2.5
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define libname %mklibname sigsegv %{major}
@@ -57,8 +57,9 @@ Libraries and header files for %{name} development.
 %package -n %{staticname}
 Summary:	Static development libraries for %{name}
 Group:		Development/C
-Requires:	%{libname}-devel = %{version}-%{release}
+Requires:	%{develname} = %{version}-%{release}
 Provides:	%{name}-static-devel = %{version}-%{release}
+Obsoletes:	%mklibname -d -s sigsegv 0
 
 %description -n %{staticname}
 Static development libraries for %{name} development.
@@ -70,7 +71,6 @@ Static development libraries for %{name} development.
 %configure2_5x \
 	--enable-shared \
 	--enable-static
-
 %make
 
 %check
