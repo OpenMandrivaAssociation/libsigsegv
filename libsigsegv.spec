@@ -15,7 +15,6 @@ License:	GPLv2+
 Group:		System/Libraries
 URL:		http://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is a library for handling page faults in user mode. A page fault
