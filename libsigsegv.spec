@@ -1,6 +1,6 @@
 %define name libsigsegv
-%define version 2.5
-%define release %mkrel 3
+%define version 2.6
+%define release %mkrel 1
 
 %define major 0
 %define libname %mklibname sigsegv %{major}
