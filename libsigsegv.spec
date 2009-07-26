@@ -1,6 +1,6 @@
 %define name libsigsegv
 %define version 2.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define libname %mklibname sigsegv %{major}
@@ -48,7 +48,6 @@ Summary:	Development libraries and header files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
 Obsoletes:	%mklibname sigsegv 0 -d
 
 %description -n	%{develname}
