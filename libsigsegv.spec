@@ -1,16 +1,12 @@
-%define name libsigsegv
-%define version 2.8
-%define release %mkrel 1
-
 %define major 2
 %define libname %mklibname sigsegv %{major}
 %define develname %mklibname sigsegv -d
 %define staticname %mklibname sigsegv -d -s
 
 Summary:	Library for handling page faults in user mode
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		libsigsegv
+Version:	2.8
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://libsigsegv.sourceforge.net/
@@ -68,8 +64,9 @@ Static development libraries for %{name} development.
 
 %build
 %configure2_5x \
-	--enable-shared \
-	--enable-static
+    --libdir=/%{_lib} \
+    --enable-shared \
+    --enable-static
 %make
 
 %check
@@ -77,9 +74,15 @@ make check
 
 %install
 rm -rf %{buildroot}
+
 %makeinstall_std
 
-rm -f %{buildroot}%{_libdir}/*.la
+rm -f %{buildroot}/%{_lib}/*.la
+rm -f %{buildroot}/%{_lib}/*.so
+
+install -d %{buildroot}%{_libdir}
+ln -s /%{_lib}/libsigsegv.so.%{major} %{buildroot}%{_libdir}/libsigsegv.so
+mv %{buildroot}/%{_lib}/lib*.a %{buildroot}%{_libdir}/
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -94,7 +97,7 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog NEWS README
-%{_libdir}/lib*.so.%{major}*
+/%{_lib}/lib*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
