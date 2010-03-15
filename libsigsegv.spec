@@ -1,5 +1,5 @@
 %define name libsigsegv
-%define version 2.7
+%define version 2.8
 %define release %mkrel 1
 
 %define major 2
