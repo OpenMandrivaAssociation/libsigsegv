@@ -5,7 +5,7 @@
 
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
-Version:	2.9
+Version:	2.10
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
