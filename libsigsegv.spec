@@ -11,7 +11,7 @@ License:	GPLv2+
 Group:		System/Libraries
 URL:		http://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Patch0:		libsigsegv-aarch64.patch
 
 %description
 This is a library for handling page faults in user mode. A page fault
@@ -61,6 +61,7 @@ Static development libraries for %{name} development.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure2_5x \
@@ -84,23 +85,11 @@ install -d %{buildroot}%{_libdir}
 ln -s /%{_lib}/libsigsegv.so.%{major} %{buildroot}%{_libdir}/libsigsegv.so
 mv %{buildroot}/%{_lib}/lib*.a %{buildroot}%{_libdir}/
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog NEWS README
 /%{_lib}/lib*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_libdir}/lib*.so
 %{_includedir}/*
 
