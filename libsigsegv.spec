@@ -1,17 +1,16 @@
-%define major 2
-%define libname %mklibname sigsegv %{major}
-%define develname %mklibname sigsegv -d
-%define staticname %mklibname sigsegv -d -s
+%define major	2
+%define libname	%mklibname sigsegv %{major}
+%define devname	%mklibname sigsegv -d
 
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
 Version:	2.10
-Release:	%mkrel 4
+Release:	5
 License:	GPLv2+
 Group:		System/Libraries
-URL:		http://libsigsegv.sourceforge.net/
+Url:		http://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
-Patch0:		libsigsegv-aarch64.patch
+Patch0:	libsigsegv-aarch64.patch
 
 %description
 This is a library for handling page faults in user mode. A page fault
@@ -39,120 +38,37 @@ technique for implementing:
   - stack overflow handlers,
   - distributed shared memory,
 
-%package -n %{develname}
+%package -n %{devname}
 Summary:	Development libraries and header files for %{name} 
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Obsoletes:	%mklibname sigsegv 0 -d
 
-%description -n	%{develname}
+%description -n	%{devname}
 Libraries and header files for %{name} development.
-
-%package -n %{staticname}
-Summary:	Static development libraries for %{name}
-Group:		Development/C
-Requires:	%{develname} = %{version}-%{release}
-Provides:	%{name}-static-devel = %{version}-%{release}
-Obsoletes:	%mklibname -d -s sigsegv 0
-
-%description -n %{staticname}
-Static development libraries for %{name} development.
 
 %prep
 %setup -q
-%patch0 -p1
+%apply_patches
 
 %build
 %configure2_5x \
-    --libdir=/%{_lib} \
-    --enable-shared \
-    --enable-static
+	--libdir=/%{_lib} \
+	--enable-shared \
+	--disable-static
 %make
 
 %check
 make check
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
-rm -f %{buildroot}/%{_lib}/*.la
-rm -f %{buildroot}/%{_lib}/*.so
-
-install -d %{buildroot}%{_libdir}
-ln -s /%{_lib}/libsigsegv.so.%{major} %{buildroot}%{_libdir}/libsigsegv.so
-mv %{buildroot}/%{_lib}/lib*.a %{buildroot}%{_libdir}/
-
 %files -n %{libname}
+/%{_lib}/libsigsegv.so.%{major}*
+
+%files -n %{devname}
 %doc AUTHORS ChangeLog NEWS README
-/%{_lib}/lib*.so.%{major}*
-
-%files -n %{develname}
-%{_libdir}/lib*.so
+/%{_lib}/lib*.so
 %{_includedir}/*
-
-%files -n %{staticname}
-%{_libdir}/lib*.a
-
-
-%changelog
-* Sun Apr 17 2011 Tomasz Pawel Gajc <tpg@mandriva.org> 2.10-1mdv2011.0
-+ Revision: 654571
-- update to new version 2.10
-
-* Sun Nov 28 2010 Tomasz Pawel Gajc <tpg@mandriva.org> 2.9-1mdv2011.0
-+ Revision: 602351
-- update to new version 2.9
-
-* Mon Mar 15 2010 Oden Eriksson <oeriksson@mandriva.com> 2.8-2mdv2010.1
-+ Revision: 519776
-- move the libraries to /%%{_lib}/
-
-* Mon Mar 15 2010 Oden Eriksson <oeriksson@mandriva.com> 2.8-1mdv2010.1
-+ Revision: 519533
-- 2.8
-
-* Sun Aug 09 2009 Frederik Himpe <fhimpe@mandriva.org> 2.7-1mdv2010.0
-+ Revision: 412924
-- Update to new version 2.7 (new major)
-
-* Sun Jul 26 2009 Funda Wang <fwang@mandriva.org> 2.6-2mdv2010.0
-+ Revision: 400115
-- drop invalid provides
-
-* Mon Aug 25 2008 Emmanuel Andry <eandry@mandriva.org> 2.6-1mdv2009.0
-+ Revision: 275824
-- ?\194New version
-
-* Tue Jun 17 2008 Thierry Vignaud <tv@mandriva.org> 2.5-3mdv2009.0
-+ Revision: 223002
-- rebuild
-- kill re-definition of %%buildroot on Pixel's request
-
-  + Pixel <pixel@mandriva.com>
-    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
-
-  + Olivier Blin <oblin@mandriva.com>
-    - restore BuildRoot
-
-* Mon Nov 26 2007 Funda Wang <fwang@mandriva.org> 2.5-2mdv2008.1
-+ Revision: 112165
-- fix requires of static devel package
-
-* Mon Nov 12 2007 Funda Wang <fwang@mandriva.org> 2.5-1mdv2008.1
-+ Revision: 108148
-- New version 2.5
-
-* Sat Oct 27 2007 Tomasz Pawel Gajc <tpg@mandriva.org> 2.4-1mdv2008.1
-+ Revision: 102659
-- new version
-- new license policy
-- new devel library policy
-- spec file clean
-
-
-* Sat May 20 2006 Per Øyvind Karlsen <pkarlsen@mandriva.com> 2.3-1mdk
-- initial release
 
