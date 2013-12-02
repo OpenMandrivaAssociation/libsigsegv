@@ -13,6 +13,7 @@ Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
 Patch0:		libsigsegv-aarch64.patch
 Patch1:		SIGSTKSZ-adjust.patch
 Patch2:		no-stackhandler-on-s390.patch
+Patch3:		libsigsegv-0002-fix-aarch64-build.patch
 
 
 %description
