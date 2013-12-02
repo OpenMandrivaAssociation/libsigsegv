@@ -10,7 +10,10 @@ License:	GPLv2+
 Group:		System/Libraries
 Url:		http://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
-Patch0:	libsigsegv-aarch64.patch
+Patch0:		libsigsegv-aarch64.patch
+Patch1:		SIGSTKSZ-adjust.patch
+Patch2:		no-stackhandler-on-s390.patch
+
 
 %description
 This is a library for handling page faults in user mode. A page fault
@@ -50,6 +53,7 @@ Libraries and header files for %{name} development.
 %prep
 %setup -q
 %apply_patches
+autoreconf -fiv
 
 %build
 %configure2_5x \
