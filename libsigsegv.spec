@@ -1,6 +1,6 @@
-%define major	2
-%define libname	%mklibname sigsegv %{major}
-%define devname	%mklibname sigsegv -d
+%define major 2
+%define libname %mklibname sigsegv %{major}
+%define devname %mklibname sigsegv -d
 
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
@@ -57,7 +57,7 @@ Libraries and header files for %{name} development.
 autoreconf -fiv
 
 %build
-%configure2_5x \
+%configure \
 	--libdir=/%{_lib} \
 	--enable-shared \
 	--disable-static
