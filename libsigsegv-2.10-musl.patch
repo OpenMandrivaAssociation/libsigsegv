@@ -1,0 +1,22 @@
+--- libsigsegv-2.10/src/fault-linux-arm-old.h.omv~	2015-06-24 09:52:10.204229607 +0200
++++ libsigsegv-2.10/src/fault-linux-arm-old.h	2015-06-24 09:52:24.643131345 +0200
+@@ -19,7 +19,7 @@
+    kernels would be more complicated, see file
+    glibc/sysdeps/unix/sysv/linux/arm/bits/armsigctx.h.  */
+ 
+-#include <asm/sigcontext.h>
++#include <signal.h>
+ 
+ #define SIGSEGV_FAULT_HANDLER_ARGLIST  int sig, int r1, int r2, int r3, struct sigcontext sc
+ #define SIGSEGV_FAULT_CONTEXT  &sc
+--- libsigsegv-2.10/src/fault-linux-x86_64-old.h.omv~	2015-06-24 09:51:22.468556259 +0200
++++ libsigsegv-2.10/src/fault-linux-x86_64-old.h	2015-06-24 09:51:58.437309867 +0200
+@@ -15,7 +15,7 @@
+    along with this program; if not, write to the Free Software Foundation,
+    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+ 
+-#include <asm/sigcontext.h>
++#include <signal.h>
+ 
+ #define SIGSEGV_FAULT_HANDLER_ARGLIST  int sig, struct sigcontext sc
+ #define SIGSEGV_FAULT_CONTEXT  (&sc)
