@@ -63,8 +63,10 @@ autoreconf -fiv
 	--disable-static
 %make
 
+%if ! %{cross_compiling}
 %check
 make check
+%endif
 
 %install
 %makeinstall_std
