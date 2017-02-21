@@ -4,8 +4,8 @@
 
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
-Version:	2.10
-Release:	14
+Version:	2.11
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://libsigsegv.sourceforge.net/
@@ -75,7 +75,7 @@ make check
 /%{_lib}/libsigsegv.so.%{major}*
 
 %files -n %{devname}
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS NEWS README
 /%{_lib}/lib*.so
 %{_includedir}/*
 
