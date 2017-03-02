@@ -4,16 +4,14 @@
 
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
-Version:	2.10
-Release:	14
+Version:	2.11
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
-Patch0:		libsigsegv-aarch64.patch
 Patch1:		SIGSTKSZ-adjust.patch
 Patch2:		no-stackhandler-on-s390.patch
-Patch3:		libsigsegv-0002-fix-aarch64-build.patch
 Patch4:		libsigsegv-2.10-musl.patch
 
 %description
@@ -43,7 +41,7 @@ technique for implementing:
   - distributed shared memory,
 
 %package -n %{devname}
-Summary:	Development libraries and header files for %{name} 
+Summary:	Development libraries and header files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
