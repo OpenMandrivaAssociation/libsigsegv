@@ -5,7 +5,7 @@
 Summary:	Library for handling page faults in user mode
 Name:		libsigsegv
 Version:	2.12
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://libsigsegv.sourceforge.net/
@@ -50,8 +50,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Libraries and header files for %{name} development.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 autoreconf -fiv
 
 %build
@@ -59,7 +58,8 @@ autoreconf -fiv
 	--libdir=/%{_lib} \
 	--enable-shared \
 	--disable-static
-%make
+
+%make_build
 
 %if ! %{cross_compiling}
 %check
@@ -67,7 +67,7 @@ make check
 %endif
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 /%{_lib}/libsigsegv.so.%{major}*
