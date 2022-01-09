@@ -1,6 +1,7 @@
---- libsigsegv-2.10/src/fault-linux-arm-old.h.omv~	2015-06-24 09:52:10.204229607 +0200
-+++ libsigsegv-2.10/src/fault-linux-arm-old.h	2015-06-24 09:52:24.643131345 +0200
-@@ -19,7 +19,7 @@
+diff -up libsigsegv-2.14/src/fault-linux-arm-old.h.3~ libsigsegv-2.14/src/fault-linux-arm-old.h
+--- libsigsegv-2.14/src/fault-linux-arm-old.h.3~	2021-05-16 20:29:26.000000000 +0200
++++ libsigsegv-2.14/src/fault-linux-arm-old.h	2022-01-09 18:30:33.748381794 +0100
+@@ -18,7 +18,7 @@
     kernels would be more complicated, see file
     glibc/sysdeps/unix/sysv/linux/arm/bits/armsigctx.h.  */
  
@@ -9,11 +10,12 @@
  
  #define SIGSEGV_FAULT_HANDLER_ARGLIST  int sig, int r1, int r2, int r3, struct sigcontext sc
  #define SIGSEGV_FAULT_CONTEXT  &sc
---- libsigsegv-2.10/src/fault-linux-x86_64-old.h.omv~	2015-06-24 09:51:22.468556259 +0200
-+++ libsigsegv-2.10/src/fault-linux-x86_64-old.h	2015-06-24 09:51:58.437309867 +0200
-@@ -15,7 +15,7 @@
-    along with this program; if not, write to the Free Software Foundation,
-    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+diff -up libsigsegv-2.14/src/fault-linux-x86_64-old.h.3~ libsigsegv-2.14/src/fault-linux-x86_64-old.h
+--- libsigsegv-2.14/src/fault-linux-x86_64-old.h.3~	2022-01-09 18:30:33.748381794 +0100
++++ libsigsegv-2.14/src/fault-linux-x86_64-old.h	2022-01-09 18:32:28.898862038 +0100
+@@ -14,7 +14,7 @@
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
  
 -#include <asm/sigcontext.h>
 +#include <signal.h>
