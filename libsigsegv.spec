@@ -8,7 +8,7 @@ Version:	2.14
 Release:	2
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://libsigsegv.sourceforge.net/
+Url:		https://libsigsegv.sourceforge.net/
 Source0:	http://ftp.gnu.org/gnu/libsigsegv/%{name}-%{version}.tar.gz
 Patch1:		SIGSTKSZ-adjust.patch
 Patch2:		no-stackhandler-on-s390.patch
