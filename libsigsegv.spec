@@ -14,6 +14,11 @@ Patch1:		SIGSTKSZ-adjust.patch
 Patch2:		no-stackhandler-on-s390.patch
 Patch4:		libsigsegv-2.10-musl.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 This is a library for handling page faults in user mode. A page fault
 occurs when a program tries to access to a region of memory that is
